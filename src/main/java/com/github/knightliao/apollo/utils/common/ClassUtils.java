@@ -1,6 +1,9 @@
 package com.github.knightliao.apollo.utils.common;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 类工具
@@ -9,7 +12,6 @@ import java.lang.reflect.Field;
  * @version 2014-6-11
  */
 public class ClassUtils {
-
 
     /**
      * 由Get Method名称获取Field名
@@ -93,13 +95,14 @@ public class ClassUtils {
         }
     }
 
-
     /**
      * 根据Field类型返回值
      *
      * @param type
      * @param value
+     *
      * @return
+     *
      * @throws Exception
      */
     public static Object getValeByType(Class<?> type, Object value)
@@ -157,4 +160,33 @@ public class ClassUtils {
             return value;
         }
     }
+
+    /**
+     * 获取一个类的所有方法
+     *
+     * @param entityClass
+     *
+     * @return
+     */
+    public static Set<Method> getAllMethod(Class<?> entityClass) {
+
+        // 获取本类的所有的方法
+        Set<Method> ms = new HashSet<Method>();
+        for (Method m : entityClass.getMethods()) {
+            ms.add(m);
+        }
+        for (Method m : entityClass.getDeclaredMethods()) {
+            ms.add(m);
+        }
+
+        // 递归获取父类的所有方法
+        Class<?> superClass = entityClass.getSuperclass();
+        if (!superClass.equals(Object.class)) {
+            Set<Method> superFields = getAllMethod(superClass);
+            ms.addAll(superFields);
+        }
+
+        return ms;
+    }
+
 }

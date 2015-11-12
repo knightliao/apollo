@@ -7,7 +7,7 @@ PhoebusApollo is a useful Java Utils Library.
 
 apollo.git branches and Maven version:
 
-- dev(develop branch): 1.0.8
+- dev(develop branch): 1.0.9-SNAPSHOT
 - master(stable branch)：1.0.8
 
 在Maven Central Repository里查看[com.github.knightliao.apollo](http://search.maven.org/#search%7Cga%7C1%7Ccom.github.knightliao.apollo )
@@ -45,13 +45,21 @@ apollo.git branches and Maven version:
     <dependency>
         <groupId>com.github.knightliao.apollo</groupId>
         <artifactId>apollo</artifactId>
-        <version>1.0.7</version>
+        <version>1.0.8</version>
     </dependency>
 
-主要依赖为：
+## 依赖
 
-- gson(2.3)
-- guava(16.0) 
+    [INFO] +- commons-io:commons-io:jar:1.4:provided
+    [INFO] +- commons-lang:commons-lang:jar:2.4:provided
+    [INFO] +- org.codehaus.jackson:jackson-core-asl:jar:1.9.8:provided
+    [INFO] +- commons-pool:commons-pool:jar:1.4:compile
+    [INFO] +- com.google.code.gson:gson:jar:2.3:provided
+    [INFO] +- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.8:provided
+    [INFO] +- javax.servlet:servlet-api:jar:2.4:provided
+    [INFO] +- redis.clients:jedis:jar:2.1.0:provided
+    [INFO] +- commons-collections:commons-collections:jar:3.2:provided
+    [INFO] +- org.slf4j:slf4j-api:jar:1.7.6:provided
 
 ## Authors ##
 
