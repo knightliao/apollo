@@ -6,7 +6,7 @@
     <artifactId>apollo</artifactId>
     <packaging>jar</packaging>
 
-    <version>1.0.9</version>
+    <version>1.0.10-SNAPSHOT</version>
     <groupId>com.github.knightliao.apollo</groupId>
     <description>https://github.com/knightliao/apollo</description>
 

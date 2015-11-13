@@ -1,16 +1,17 @@
 package com.github.knightliao.apollo.utils.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.knightliao.apollo.utils.tool.ClassLoaderUtil;
 
 /**
  * 配置导入工具
@@ -22,32 +23,6 @@ public final class ConfigLoaderUtils {
 
     protected static final Logger LOGGER = LoggerFactory
             .getLogger(ConfigLoaderUtils.class);
-    public static String CLASS_PATH = "";
-
-    // loader
-    private static ClassLoader loader = ConfigLoaderUtils.class
-            .getClassLoader();
-
-    //
-    // get class path
-    //
-    static {
-
-        if (loader == null) {
-            LOGGER.info("using system class loader!");
-            loader = ClassLoader.getSystemClassLoader();
-        }
-        java.net.URL url = loader.getResource("");
-
-        try {
-            // get class path
-            CLASS_PATH = url.getPath();
-            CLASS_PATH = URLDecoder.decode(CLASS_PATH, "utf-8");
-        } catch (Exception e) {
-            LOGGER.warn(e.getMessage());
-        }
-    }
-
 
     private ConfigLoaderUtils() {
 
@@ -55,7 +30,9 @@ public final class ConfigLoaderUtils {
 
     /**
      * @param propertyFilePath
+     *
      * @return void
+     *
      * @Description: 使用TOMCAT方式来导入
      * @author liaoqiqi
      * @date 2013-6-19
@@ -70,21 +47,23 @@ public final class ConfigLoaderUtils {
             // 先用TOMCAT模式进行导入
             // http://blog.csdn.net/minfree/article/details/1800311
             // http://stackoverflow.com/questions/3263560/sysloader-getresource-problem-in-java
-            URL url = loader.getResource(propertyFilePath);
+            URL url = ClassLoaderUtil.getLoader().getResource(propertyFilePath);
             URI uri = new URI(url.toString());
             props.load(new FileInputStream(uri.getPath()));
 
         } catch (Exception e) {
 
             // http://stackoverflow.com/questions/574809/load-a-resource-contained-in-a-jar
-            props.load(loader.getResourceAsStream(propertyFilePath));
+            props.load(ClassLoaderUtil.getLoader().getResourceAsStream(propertyFilePath));
         }
         return props;
     }
 
     /**
      * @param propertyFilePath
+     *
      * @return void
+     *
      * @Description: 使用普通模式导入
      * @author liaoqiqi
      * @date 2013-6-19
@@ -99,7 +78,9 @@ public final class ConfigLoaderUtils {
 
     /**
      * @param propertyFilePath
+     *
      * @return Properties
+     *
      * @throws Exception
      * @Description: 配置文件载入器助手
      * @author liaoqiqi
@@ -129,7 +110,9 @@ public final class ConfigLoaderUtils {
 
     /**
      * @param filePath
+     *
      * @return InputStream
+     *
      * @Description: 采用两种方式来载入文件
      * @author liaoqiqi
      * @date 2013-6-20
@@ -141,7 +124,7 @@ public final class ConfigLoaderUtils {
         try {
 
             // 先用TOMCAT模式进行导入
-            in = loader.getResourceAsStream(filePath);
+            in = ClassLoaderUtil.getLoader().getResourceAsStream(filePath);
             if (in == null) {
 
                 // 使用普通模式导入

@@ -1,11 +1,11 @@
 package com.github.knightliao.apollo.db.utils;
 
-import com.github.knightliao.apollo.db.bo.BaseObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.github.knightliao.apollo.db.bo.BaseObject;
 
 /**
  * Service层工具
@@ -19,9 +19,10 @@ public class ServiceUtil {
      * 转换成Map
      *
      * @param enTs
+     *
      * @return
      */
-    public static <T extends BaseObject<Long>> Map<Long, T> conver2Map(
+    public static <T extends BaseObject<Long>> Map<Long, T> convert2Map(
             List<T> enTs) {
 
         Map<Long, T> map = new HashMap<Long, T>();
@@ -42,9 +43,10 @@ public class ServiceUtil {
      * 获得List<T> 的ID列表
      *
      * @param enTs
+     *
      * @return
      */
-    public static <T extends BaseObject<Long>> List<Long> conver2IdList(
+    public static <T extends BaseObject<Long>> List<Long> convert2IdList(
             List<T> enTs) {
         List<Long> result = new ArrayList<Long>();
 
