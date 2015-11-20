@@ -35,10 +35,10 @@ public final class ClassLoaderUtil {
             LOGGER.info("using system class loader!");
             loader = ClassLoader.getSystemClassLoader();
         }
-        java.net.URL url = loader.getResource("");
 
         try {
 
+            java.net.URL url = loader.getResource("");
             // get class path
             classPath = url.getPath();
             classPath = URLDecoder.decode(classPath, "utf-8");
@@ -50,8 +50,11 @@ public final class ClassLoaderUtil {
             }
 
         } catch (Exception e) {
-            LOGGER.warn(e.getMessage());
+            LOGGER.warn("cannot get classpath using getResource(), now using user.dir");
+            classPath = System.getProperty("user.dir");
         }
+
+        LOGGER.info("classpath: {}", classPath);
     }
 
     public static String getClassPath() {
