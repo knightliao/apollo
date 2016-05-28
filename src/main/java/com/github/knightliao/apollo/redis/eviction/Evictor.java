@@ -1,6 +1,3 @@
-/*
- * Copyright (C) 2014 Baidu, Inc. All Rights Reserved.
- */
 package com.github.knightliao.apollo.redis.eviction;
 
 import java.util.HashMap;
@@ -19,8 +16,6 @@ import com.github.knightliao.apollo.redis.RedisClient;
  * <p/>
  * 按照时间间隔遍历所有redis client，进行ping，如果返回pong，则证明连接可用。 如果出现异常pong没有返回，则代表失效连接一次，连续到达指定的失败次数后，标记redis client为失效，置alive为false。
  * 当ping-pong再次响应正常后，即恢复redis client为可用，重置alive为true。
- *
- * @author zhangxu04
  */
 public class Evictor extends TimerTask {
 
@@ -87,12 +82,12 @@ public class Evictor extends TimerTask {
                 }
                 int failedTimes = evictorFailedTimesCount.get(client).incrementAndGet();
                 logger.warn("failed times: " + failedTimes +
-                                ", ping not get pong but client failed times is not more than " +
-                                evictorFailedTimesToBeTickOut + ", so client is alive " +
-                                client.getLiteralRedisServer());
+                        ", ping not get pong but client failed times is not more than " +
+                        evictorFailedTimesToBeTickOut + ", so client is alive " +
+                        client.getLiteralRedisServer());
                 if (failedTimes > evictorFailedTimesToBeTickOut) {
                     logger.error("failed times is bigger than " + evictorFailedTimesToBeTickOut +
-                                     ", so client tick out, " + client.getLiteralRedisServer());
+                            ", so client tick out, " + client.getLiteralRedisServer());
                     client.setAlive(false);
                 }
             } else {
@@ -101,7 +96,8 @@ public class Evictor extends TimerTask {
                     continue;
                 }
                 logger
-                    .warn("last ping-pong is failed, this is first time to recover, " + client.getLiteralRedisServer());
+                        .warn("last ping-pong is failed, this is first time to recover, " + client
+                                .getLiteralRedisServer());
                 evictorFailedTimesCount.get(client).set(0);
                 client.setAlive(true);
             }

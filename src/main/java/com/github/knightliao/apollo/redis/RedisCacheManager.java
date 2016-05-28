@@ -1,6 +1,3 @@
-/*
- * Copyright (C) 2014 Baidu, Inc. All Rights Reserved.
- */
 package com.github.knightliao.apollo.redis;
 
 import java.io.Serializable;
@@ -696,7 +693,7 @@ public class RedisCacheManager {
     private boolean isAtLeastOneAvailable(Collection<RedisClient> clients) throws RedisOperationException {
         if (clients.isEmpty()) {
             throw new RedisOperationException("All redis client is disconnected! Please check the basic availablity " +
-                                                  "of redis!");
+                    "of redis!");
         }
         return true;
     }

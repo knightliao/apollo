@@ -1,6 +1,3 @@
-/*
- * Copyright (C) 2014 Baidu, Inc. All Rights Reserved.
- */
 package com.github.knightliao.apollo.redis;
 
 import java.io.ByteArrayInputStream;
@@ -40,7 +37,6 @@ import redis.clients.util.SafeEncoder;
 /**
  * 封装Jedis API，提供redis命令调用的操作
  *
- * @author Zhang Xu
  */
 public class RedisClient implements RedisOperation {
 

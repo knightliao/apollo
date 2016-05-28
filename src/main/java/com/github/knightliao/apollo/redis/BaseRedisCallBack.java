@@ -1,6 +1,3 @@
-/*
- * Copyright (C) 2014 Baidu, Inc. All Rights Reserved.
- */
 package com.github.knightliao.apollo.redis;
 
 import java.util.List;
@@ -13,8 +10,6 @@ import com.github.knightliao.apollo.redis.util.RandomUtil;
 
 /**
  * 提供高可用特性的Redis客户端调用回调抽象类
- *
- * @author Zhang Xu
  */
 public abstract class BaseRedisCallBack<T> implements RedisCallBack<T> {
 
@@ -59,14 +54,14 @@ public abstract class BaseRedisCallBack<T> implements RedisCallBack<T> {
                 result = doOperation(client);
                 long end = System.currentTimeMillis();
                 logger.info("[RedisCache:" + getOptionType() + "]" + " <key:" + key + "> <client: " +
-                                client.getCacheName() + "> <server: " + client.getLiteralRedisServer() +
-                                "> success ! (use " + (end - start) + " ms)");
+                        client.getCacheName() + "> <server: " + client.getLiteralRedisServer() +
+                        "> success ! (use " + (end - start) + " ms)");
                 if (isRead) { // read=true，读取出非空即返回，否则双写
                     if (result == null) {
                         // retry another client
                         logger.info("[RedisCache:" + getOptionType() + "]" + " <key:" + key + "> <client: " +
-                                        client.getCacheName() + "> <server: " + client.getLiteralRedisServer() +
-                                        "> but null result... (use " + (end - start) + " ms)");
+                                client.getCacheName() + "> <server: " + client.getLiteralRedisServer() +
+                                "> but null result... (use " + (end - start) + " ms)");
                         continue;
                     }
                     return true;
@@ -77,8 +72,8 @@ public abstract class BaseRedisCallBack<T> implements RedisCallBack<T> {
                 this.e = new RedisOperationException(e.getMessage() + "@" + client.getLiteralRedisServer(), e);
                 long end = System.currentTimeMillis();
                 logger.error("[[RedisCache:" + getOptionType() + "]" + " <key:" + key + "> <client: " +
-                                 client.getCacheName() + "> <server: " + client.getLiteralRedisServer() + "> fail. " +
-                                 e.getMessage() + "! (use " + (end - start) + " ms)");
+                        client.getCacheName() + "> <server: " + client.getLiteralRedisServer() + "> fail. " +
+                        e.getMessage() + "! (use " + (end - start) + " ms)");
             }
         }
 

@@ -1,6 +1,3 @@
-/*
- * Copyright (C) 2014 Baidu, Inc. All Rights Reserved.
- */
 package com.github.knightliao.apollo.redis.eviction;
 
 import java.util.Timer;
