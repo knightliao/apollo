@@ -7,8 +7,8 @@ PhoebusApollo is a useful Java Utils Library.
 
 apollo.git branches and Maven version:
 
-- dev(develop branch): 1.0.13
-- master(stable branch)：1.0.13
+- dev(develop branch): 1.0.14
+- master(stable branch)：1.0.14
 
 在Maven Central Repository里查看[com.github.knightliao.apollo](http://search.maven.org/#search%7Cga%7C1%7Ccom.github.knightliao.apollo )
 

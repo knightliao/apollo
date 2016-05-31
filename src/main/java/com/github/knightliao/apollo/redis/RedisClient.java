@@ -36,7 +36,6 @@ import redis.clients.util.SafeEncoder;
 
 /**
  * 封装Jedis API，提供redis命令调用的操作
- *
  */
 public class RedisClient implements RedisOperation {
 
@@ -105,7 +104,7 @@ public class RedisClient implements RedisOperation {
 
     protected void onAfterInit(String host, int port) {
         logger.info("New Jedis pool <client: " + cacheName + "> <server: " + this.getLiteralRedisServer() +
-                        "> object created. Connection pool will be initiated when calling.");
+                "> object created. Connection pool will be initiated when calling.");
     }
 
     private GenericObjectPool.Config getPoolConfig() {

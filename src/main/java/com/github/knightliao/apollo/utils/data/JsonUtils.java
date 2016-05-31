@@ -1,18 +1,18 @@
 package com.github.knightliao.apollo.utils.data;
 
-import com.github.knightliao.apollo.utils.time.DateUtils;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.JsonSerializer;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializerProvider;
-import org.codehaus.jackson.map.ser.StdSerializerProvider;
-import org.codehaus.jackson.type.TypeReference;
+import java.io.IOException;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.Date;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.github.knightliao.apollo.utils.time.DateUtils;
 
 /**
  * JSON工具类
@@ -26,18 +26,12 @@ public final class JsonUtils {
     private static final Logger log = LoggerFactory.getLogger(JsonUtils.class);
 
     static {
-        StdSerializerProvider sp = new StdSerializerProvider();
-        // sp.setNullValueSerializer(new NullNullSerializer());
-        objectMapper = new ObjectMapper(null, sp, null);
-        // objectMapper.setDateFormat(new
-        // SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        objectMapper = new ObjectMapper();
     }
 
     private JsonUtils() {
 
     }
-
-    ;
 
     public static ObjectMapper getObjectMapper() {
         return objectMapper;
@@ -49,6 +43,7 @@ public final class JsonUtils {
      * @param <T>
      * @param jsonString JSON字符串
      * @param tr         TypeReference,例如: new TypeReference< List<FamousUser> >(){}
+     *
      * @return List对象列表
      */
     @SuppressWarnings("unchecked")
