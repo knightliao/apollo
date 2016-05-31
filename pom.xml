@@ -470,7 +470,6 @@
         </profile>
     </profiles>
 
-
     <developers>
         <developer>
             <name>Liao Qiqi</name>
@@ -482,6 +481,5 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
-
 
 </project>
