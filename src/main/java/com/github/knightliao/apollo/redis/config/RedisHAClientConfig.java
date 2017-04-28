@@ -28,11 +28,25 @@ public class RedisHAClientConfig {
      * redis密码
      */
     private String redisAuthKey;
-
+    
     /**
      * redis连接超时
      */
     private int timeout = 20000;
+    
+    /**
+     * redis databse
+     */
+    private int redisDatabase = Protocol.DEFAULT_DATABASE;
+    
+
+    public int getRedisDatabase() {
+		return redisDatabase;
+	}
+
+	public void setRedisDatabase(int redisDatabase) {
+		this.redisDatabase = redisDatabase;
+	}
 
     public String getCacheName() {
         return cacheName;
