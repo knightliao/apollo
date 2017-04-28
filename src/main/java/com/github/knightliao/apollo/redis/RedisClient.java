@@ -46,6 +46,8 @@ public class RedisClient implements RedisOperation {
     private String redisServerHost = "localhost";
 
     private int redisServerPort = Protocol.DEFAULT_PORT;
+    
+    private int redisDatabase = Protocol.DEFAULT_DATABASE;
 
     private String redisAuthKey;
 
@@ -93,12 +95,11 @@ public class RedisClient implements RedisOperation {
         this.redisServerPort = clientConfig.getRedisServerPort();
         this.timeout = clientConfig.getTimeout();
         this.redisAuthKey = clientConfig.getRedisAuthKey();
+        this.redisDatabase = clientConfig.getRedisDatabase();
         if (StringUtils.isEmpty(redisAuthKey)) {
             logger.info("use no auth mode for " + redisServerHost);
-            jedisPool = new JedisPool(getPoolConfig(), redisServerHost, redisServerPort, timeout);
-        } else {
-            jedisPool = new JedisPool(getPoolConfig(), redisServerHost, redisServerPort, timeout, redisAuthKey);
         }
+        jedisPool = new JedisPool(getPoolConfig(), redisServerHost, redisServerPort, timeout, redisAuthKey, redisDatabase);
         onAfterInit(redisServerHost, redisServerPort);
     }
 
